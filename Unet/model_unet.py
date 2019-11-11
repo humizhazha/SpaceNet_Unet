@@ -366,7 +366,7 @@ def get_patches_lab(threeband_vols,
         if validating:
             valid_idxs = np.where(np.sum(label_patches, axis=(1, 2)) != -1)
         else:
-            valid_idxs = np.where(np.count_nonzero(label_patches, axis=(1, 2)) > 10)
+            valid_idxs = np.where(np.count_nonzero(label_patches, axis=(1, 2)) > 800)
 
         # Filtering extracted patches
         label_patches = label_patches[valid_idxs]
@@ -445,7 +445,7 @@ def get_patches_unlab(unlabel_vols, extraction_step, patch_shape,type_class,num_
 
         # Select only those who are important for processing
         # Sampling strategy: reject samples which labels are mostly 0 and have less than 6000 nonzero elements
-        valid_idxs = np.where(np.count_nonzero(label_patches, axis=(1, 2)) > 10)
+        valid_idxs = np.where(np.count_nonzero(label_patches, axis=(1, 2)) > 800)
 
         label_patches = label_patches[valid_idxs]
         x = np.vstack((x, np.zeros((len(label_patches), patch_shape_1d, patch_shape_1d, 2))))
